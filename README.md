@@ -1,8 +1,8 @@
-## Aplicatie de licitatii cu functionalitati variate
+# Aplicatie de licitatii cu functionalitati variate
 
-# Continut:
+## Continut:
 
-# Models
+## Models
   1. Auction - clasa de licitatii
   2. AuctionStatus - clasa ce prezinta statusul licitatiei
   3. Bid - clasa pentru oferta pe care o face un buyer in cadrul unei licitatii
@@ -16,7 +16,7 @@
   11. User - utilizatorul insusi
   12. Watchlist - orice buyer poate adauga anumite licitatii in Watchlist pentru a le urmari
 
-# Service
+## Service
   1. Auctionservice - Serviciul pentru licitatii, contine functionalitati diverse, precum crearea si inchiderea de licitatii, plasarea ofertelor, urmarirea evolutiei ofertelor unei licitatii,
                       verificarea valabilitatii unei licitatii, urmarirea castigurilor Seller-ilor.
   2. Notificationservice - Serviciul pentru urmarirea notificarilor utilizatorilor
@@ -24,7 +24,7 @@
   4. Userservice - Serviciu pentru useri
   5. Watchlistservice - Serviciu pentru plasarea licitatiilor in watchlist
 
-# Main
+## Main
   Main pentru rularea aplicatiei.
 
 
