@@ -29,4 +29,25 @@
 
 
 # Functionalitati:
-
+  1. Register Buyer - adauga un nou buyer ce poate face oferte licitatiilor
+  2. Register Seller - adauga un nou seller ce poate crea licitatii
+  3. Delete user - sterge contul user-ului
+  4. Get all sellers - reda toti sellerii
+  5. Add new product - adauga un nou produs ce poate mai apoi fi dat la licitatie
+  6. Show all products - afiseaza toate produsele existente
+  7. Open auction - creeaza o noua licitatie cu atributele ei specifice
+  8. Show all auctions - afiseaza toate licitatiile
+  9. Show auctions by status - afiseaza toate licitatiile in functie de status: Open sau Closed
+  10. Place bid - permite unui buyer sa faca o oferta (nu poate fi mai mica sau egala cu ultima oferta)
+  11. Show biggest bid - afiseaza cea mai mare oferta pentru o anumita licitatie
+  12. Show bid history - afiseaza intregul istoric pentru o anumita licitatie
+  13. Close expired auctions - inchide definitiv licitatiile expirate
+  14. Show seller's auctions - afiseaza licitatiile unui anumit seller
+  15. Show seller's winnings - afiseaza tot castigul acumulat al unui anumit seller
+  16. Show auctions about to expire at a certain time - afiseaza toate licitatiile ce vor expira intr-un anumit timp dat
+  17. Show won auctions by buyer - afiseaza licitatiile castigate de un buyer
+  18. Add auction to watchlist - adauga o licitatie pe watchlist-ul unui buyer
+  19. Remove auction from watchlist - scoate o licitatie de pe watchlist-ul unui buyer
+  20. Show all auctions in watchlist - afiseaza toate licitatiile aflate pe watchlistul unui anumit buyer
+  21. Send notification to user - trimite o notificare unui user
+  22. Show user's notifications - afiseaza toate notificarile unui anumit user
