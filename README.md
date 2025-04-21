@@ -1,6 +1,6 @@
 # Aplicatie de licitatii cu functionalitati variate
 
-## Continut:
+# Continut:
 
 ## Models
   1. Auction - clasa de licitatii
