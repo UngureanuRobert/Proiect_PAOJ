@@ -12,8 +12,9 @@ public class Auction {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private AuctionStatus status;
+    private final double startPrice;
 
-    public Auction(Product product, Seller seller, LocalDateTime startTime1, LocalDateTime endTime1)
+    public Auction(Product product, Seller seller, LocalDateTime startTime1, LocalDateTime endTime1, double startPrice)
     {
         this.id = AuctionIdGenerator.generate_id();
         this.product = product;
@@ -22,6 +23,7 @@ public class Auction {
         this.startTime = startTime1;
         this.endTime = endTime1;
         this.status = AuctionStatus.OPEN;
+        this.startPrice = startPrice;
     }
     //getteriiiiii
     public String get_id()
@@ -57,6 +59,11 @@ public class Auction {
     public BidHistory get_bid_history()
     {
         return this.bidHistory;
+    }
+
+    public double get_start_price()
+    {
+        return this.startPrice;
     }
 
     //functii imp
@@ -96,6 +103,6 @@ public class Auction {
     @Override
     public String toString()
     {
-        return "Auction " + this.id + this.product.get_name() + " (" + this.status + ") - " + " Sold by: " + this.seller;
+        return "Auction " + this.id + this.product.get_name() + " (" + this.status + ") - " + this.seller + "; starting price: " + this.startPrice;
     }
 }

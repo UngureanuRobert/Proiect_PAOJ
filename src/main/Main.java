@@ -132,6 +132,7 @@ public class Main {
                     }
                 }
                 case 7 -> {
+                    System.out.println("\nOpen auction");
                     System.out.println("\nProduct name: ");
                     String product_name = scanner.nextLine().toLowerCase();
                     Product product = products_by_name.get(product_name);
@@ -150,30 +151,34 @@ public class Main {
                     }
                     Seller seller1 = (Seller) seller;
                     LocalDateTime start = LocalDateTime.now();
-                    System.out.println("Auction duration (measured in minutes):");
+                    System.out.print("Auction duration (measured in minutes): ");
                     long minutes = Long.parseLong(scanner.nextLine());
                     LocalDateTime end = start.plusMinutes(minutes);
-
-                    Auction auction = auction_service.open_auction(product, seller1, start, end);
+                    System.out.print("Start price: ");
+                    double start_price = Double.parseDouble(scanner.nextLine());
+                    Auction auction = auction_service.open_auction(product, seller1, start, end, start_price);
                     if (auction == null)
                     {
                         System.out.println("Auction for this product already exists!");
                     }
                     else
                     {
-                        System.out.println("Auction is now open! Auction id:" + auction.get_id());
+                        System.out.println("Auction is now open! Auction id: " + auction.get_id() + " - " + auction.get_start_price());
                     }
                 }
                 case 8 -> {
-                    System.out.println("\nAll auctions:");
                     ArrayList<Auction> all_auctions = auction_service.get_all_auctions();
                     if (all_auctions.isEmpty())
                     {
                         System.out.println("No auctions yet!");
                     }
-                    for (Auction auction: all_auctions)
+                    else
                     {
-                        System.out.println(auction);
+                        System.out.println("\nAll auctions:");
+                        for (Auction auction: all_auctions)
+                        {
+                            System.out.println(auction);
+                        }
                     }
                 }
                 case 9 -> {
@@ -217,7 +222,7 @@ public class Main {
                         }
                         else
                         {
-                            System.out.println("Bid can't be placed right now.");
+                            System.out.println("Bid can't be placed.");
                         }
                     }
                 }

@@ -9,7 +9,7 @@ public class Auctionservice {
     private final Map<String, Auction> auctions = new HashMap<>();
 
     //open auction
-    public Auction open_auction(Product product, Seller seller, LocalDateTime startTime1, LocalDateTime endTime1)
+    public Auction open_auction(Product product, Seller seller, LocalDateTime startTime1, LocalDateTime endTime1, double startPrice1)
     {
         for (Auction auction: auctions.values())
         {
@@ -18,7 +18,7 @@ public class Auctionservice {
                 return null;
             }
         }
-        Auction auction = new Auction(product, seller, startTime1, endTime1);
+        Auction auction = new Auction(product, seller, startTime1, endTime1, startPrice1);
         auctions.put(auction.get_id(), auction);
         seller.add_auction(auction);
         return auction;
@@ -49,6 +49,20 @@ public class Auctionservice {
     {
         Auction auction = auctions.get(auctionid);
         if (auction == null || auction.get_auction_status() != AuctionStatus.OPEN)
+        {
+            return false;
+        }
+        double current_biggest;
+        if (auction.get_biggest_bid() != null)
+        {
+            current_biggest = auction.get_biggest_bid().get_amount();
+        }
+        else
+        {
+            current_biggest = auction.get_start_price();
+        }
+
+        if (bid.get_amount() <= current_biggest)
         {
             return false;
         }

@@ -32,6 +32,6 @@ public class Bid {
     @Override
     public String toString()
     {
-        return "Bidder: " + this.bidder.get_name() + " - " + this.amount + " Euro " + " - " + this.time;
+        return "Bidder: " + this.bidder.get_name() + " - " + this.amount + " - " + this.time;
     }
 }
