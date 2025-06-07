@@ -41,3 +41,80 @@ Show all auctions in watchlist, 2025-06-07T05:43:01.756840100
 Send notification to user, 2025-06-07T05:45:32.491483400
 Show user's notifications, 2025-06-07T05:46:35.305250
 Delete bid, 2025-06-07T05:47:08.898824500
+Register buyer, 2025-06-07T17:00:41.974366600
+Delete Buyer by ID, 2025-06-07T17:04:34.079664600
+Get all buyers, 2025-06-07T17:04:42.302745200
+Register Seller, 2025-06-07T17:05:14.379956
+Get Seller by ID, 2025-06-07T17:05:34.922840400
+Get Buyer by ID, 2025-06-07T17:06:03.506411
+Update buyer by ID, 2025-06-07T17:06:41.426060900
+Update Seller by ID, 2025-06-07T17:07:22.627733
+Get all sellers, 2025-06-07T17:07:30.479914200
+Add new product, 2025-06-07T17:08:22.922262200
+Get product by ID, 2025-06-07T17:08:47.659011200
+Show all products, 2025-06-07T17:08:53.948921700
+Update product, 2025-06-07T17:09:51.988891
+Delete product, 2025-06-07T17:10:13.958794800
+Show all products, 2025-06-07T17:10:22.654878700
+Add new product, 2025-06-07T17:11:20.151750700
+Delete product, 2025-06-07T17:11:44.869497900
+Add new product, 2025-06-07T17:12:08.149240700
+Open auction, 2025-06-07T17:12:51.119731200
+Open auction, 2025-06-07T17:14:35.738836400
+Get Auction by ID, 2025-06-07T17:15:01.028139900
+Get Auction by ID, 2025-06-07T17:16:16.521169200
+Get Auction by ID, 2025-06-07T17:20:00.482048900
+Show all auctions, 2025-06-07T17:20:12.413370600
+Show auctions by status, 2025-06-07T17:20:35.961383200
+Show auctions by status, 2025-06-07T17:20:46.466233600
+Update auction, 2025-06-07T17:21:02.444766700
+Delete auction, 2025-06-07T17:22:25.723113600
+Show auctions by status, 2025-06-07T17:23:04.612394300
+Show auctions by status, 2025-06-07T17:23:13.751811400
+Delete auction, 2025-06-07T17:24:11.186735300
+Show all auctions, 2025-06-07T17:24:19.347371600
+Open auction, 2025-06-07T17:25:16.283230800
+Close Expired auctions, 2025-06-07T17:25:31.096478200
+Show seller's auctions, 2025-06-07T17:25:48.913244400
+Show seller's auctions, 2025-06-07T17:26:05.481219
+Show seller's winnings, 2025-06-07T17:26:29.320625
+Show seller's winnings, 2025-06-07T17:26:46.508459400
+Show expiring auctions, 2025-06-07T17:26:59.037327300
+Show won auctions by buyer, 2025-06-07T17:27:33.435634200
+Place bid, 2025-06-07T17:28:48.077265500
+Show biggest bid, 2025-06-07T17:29:13.487974800
+Show biggest bid, 2025-06-07T17:29:31.318065700
+Show bid history, 2025-06-07T17:39:25.856643100
+Get Bid by ID, 2025-06-07T17:39:54.416045300
+Update bid, 2025-06-07T17:40:38.434487900
+Show bid history, 2025-06-07T17:41:06.689029100
+Add auction to watchlist, 2025-06-07T17:42:16.174877800
+Add auction to watchlist, 2025-06-07T17:53:05.700633200
+Add auction to watchlist, 2025-06-07T17:55:54.918064200
+Remove auction from watchlist, 2025-06-07T18:00:37.429788100
+Add auction to watchlist, 2025-06-07T18:01:05.637060600
+Show all auctions in watchlist, 2025-06-07T18:01:25.621770700
+Show all auctions in watchlist, 2025-06-07T18:09:46.706513700
+Add auction to watchlist, 2025-06-07T18:10:21.817048
+Show all auctions in watchlist, 2025-06-07T18:10:42.850503700
+Add auction to watchlist, 2025-06-07T18:14:03.638391700
+Show all auctions in watchlist, 2025-06-07T18:14:23.682130200
+Send notification to user, 2025-06-07T18:26:12.208812200
+Show user's notifications, 2025-06-07T18:26:25.094440100
+Send notification to user, 2025-06-07T18:36:29.758018100
+Show user's notifications, 2025-06-07T18:36:39.918628200
+Add auction to watchlist, 2025-06-07T18:37:13.109485900
+Show all auctions in watchlist, 2025-06-07T18:37:25.084178
+Remove auction from watchlist, 2025-06-07T18:37:48.043909800
+Send notification to user, 2025-06-07T18:51:00.533915800
+Show user's notifications, 2025-06-07T18:51:07.659246400
+Show bid history, 2025-06-07T18:51:28.412526200
+Add auction to watchlist, 2025-06-07T18:51:53.423623800
+Show all auctions in watchlist, 2025-06-07T18:52:12.130363
+Remove auction from watchlist, 2025-06-07T18:52:29.080539500
+Show all auctions in watchlist, 2025-06-07T18:52:38.456774800
+Add auction to watchlist, 2025-06-07T18:56:46.096834
+Show all auctions in watchlist, 2025-06-07T18:56:55.679761500
+Remove auction from watchlist, 2025-06-07T18:57:15.020260200
+Show all auctions in watchlist, 2025-06-07T18:57:24.431778100
+Show user's notifications, 2025-06-07T18:57:47.840838600

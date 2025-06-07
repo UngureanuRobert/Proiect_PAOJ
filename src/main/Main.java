@@ -261,7 +261,8 @@ public class Main {
                 }
                 case 17 -> {
                     System.out.print("Auction ID: ");
-                    Auction auction = auction_service.get_all_auctions().stream().filter(auction1 -> auction1.get_id().equals(scanner.nextLine())).findFirst().orElse(null);
+                    String auctionId = scanner.nextLine(); 
+                    Auction auction = auction_service.get_all_auctions().stream().filter(a -> a.get_id().equals(auctionId)).findFirst().orElse(null);
                     System.out.println(auction != null ? auction : "Auction not found.");
                     audit_service.logAction("Get Auction by ID");
                 }
@@ -448,17 +449,20 @@ public class Main {
                 }
                 case 33 -> {
                     System.out.print("Buyer ID: ");
-                    Buyer buyer = user_service.get_buyer_by_id(scanner.nextLine());
+                    String buyerId = scanner.nextLine();
+                    Buyer buyer = user_service.get_buyer_by_id(buyerId);
                     if (buyer == null) 
                     {
                         System.out.println("Buyer not found");
                         break;
                     }
                     System.out.print("Auction ID: ");
-                    Auction auction = auction_service.get_all_auctions().stream().filter(auction1 -> auction1.get_id().equals(scanner.nextLine())).findFirst().orElse(null);
+                    String auctionId = scanner.nextLine();
+                    Auction auction = auction_service.get_all_auctions().stream().filter(auction1 -> auction1.get_id().equals(auctionId)).findFirst().orElse(null);
                     if (auction == null)
                     {
                         System.out.println("Auction not found!");
+                        break;
                     }
                     boolean added = watchlist_service.add_to_watchlist(buyer, auction);
                     System.out.println(added ? "Auction added to Watchlist" : "Auction already in watchlist");
@@ -466,14 +470,16 @@ public class Main {
                 }
                 case 34 -> {
                     System.out.print("Buyer ID: ");
-                    Buyer buyer = user_service.get_buyer_by_id(scanner.nextLine());
+                    String buyerId = scanner.nextLine();
+                    Buyer buyer = user_service.get_buyer_by_id(buyerId);
                     if (buyer == null) 
                     {
                         System.out.println("Buyer not found");
                         break;
                     }
                     System.out.print("Auction ID: ");
-                    Auction auction = auction_service.get_all_auctions().stream().filter(auction1 -> auction1.get_id().equals(scanner.nextLine())).findFirst().orElse(null);
+                    String auctionId = scanner.nextLine();
+                    Auction auction = auction_service.get_all_auctions().stream().filter(auction1 -> auction1.get_id().equals(auctionId)).findFirst().orElse(null);
                     if (auction == null)
                     {
                         System.out.println("Auction not found");
@@ -485,7 +491,8 @@ public class Main {
                 }
                 case 35 -> {
                     System.out.print("Buyer ID: ");
-                    Buyer buyer = user_service.get_buyer_by_id(scanner.nextLine());
+                    String buyerId = scanner.nextLine();
+                    Buyer buyer = user_service.get_buyer_by_id(buyerId);
                     if (buyer == null) 
                     {
                         System.out.println("Buyer not found");

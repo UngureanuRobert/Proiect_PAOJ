@@ -1,6 +1,8 @@
 package models;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 import util.AuctionIdGenerator;
 import java.time.Duration;
 
@@ -16,7 +18,7 @@ public class Auction {
 
     public Auction(Product product, Seller seller, LocalDateTime startTime1, LocalDateTime endTime1, double startPrice)
     {
-        this.id = AuctionIdGenerator.generate_id();
+        this.id = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         this.product = product;
         this.seller = seller;
         this.bidHistory = new BidHistory();
