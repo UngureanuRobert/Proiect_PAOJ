@@ -23,6 +23,18 @@
   3. Productservice - Serviciul pentru adaugare si afisare de produse
   4. Userservice - Serviciu pentru useri
   5. Watchlistservice - Serviciu pentru plasarea licitatiilor in watchlist
+  6. Auditservice - Serviciu pentru scrierea tuturor functionalitatilor in fisierul csv
+
+## SQL
+  Seed.sql contine tabelele specifice din baza de date: Seller, Buyer, Product, Auction, Bid
+
+## DAO
+  1. AuctionDAO
+  2. BidDAO
+  3. BuyerDAO
+  4. ProductDAO
+  5. SellerDAO
+- folosite pentru a realiza modificari directe asupra bazei de date, fiecare fisier DAO este asociat tabelului corespunzator.
 
 ## Main
   Main pentru rularea aplicatiei.
