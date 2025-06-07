@@ -14,6 +14,14 @@ public class User {
         this.email = email;
     }
 
+    //constructor for SELECTING from DB (needed in DAO)
+    public User(String id, String name, String email)
+    {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
     public String get_id()
     {
         return this.id;

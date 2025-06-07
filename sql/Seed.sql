@@ -1,0 +1,40 @@
+CREATE TABLE Seller (
+    id VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Buyer (
+    id VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Product (
+    id VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(255),
+    category VARCHAR(25) NOT NULL 
+);
+
+CREATE TABLE Auction (
+    id VARCHAR(50) PRIMARY KEY,
+    product_id VARCHAR(50) NOT NULL,
+    seller_id VARCHAR(50) NOT NULL,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP NOT NULL,
+    status VARCHAR(25) NOT NULL,
+    start_price DOUBLE PRECISION NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES Product(id) ON DELETE CASCADE,
+    FOREIGN KEY (seller_id) REFERENCES Seller(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Bid (
+    id VARCHAR(50) PRIMARY KEY,
+    amount DOUBLE PRECISION NOT NULL,
+    auction_id VARCHAR(50) NOT NULL,
+    buyer_id VARCHAR(50) NOT NULL,
+    bid_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (auction_id) REFERENCES Auction(id) ON DELETE CASCADE,
+    FOREIGN KEY (buyer_id) REFERENCES Buyer(id) ON DELETE CASCADE
+);

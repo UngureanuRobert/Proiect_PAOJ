@@ -2,21 +2,41 @@ package service;
 
 import java.util.*;
 import models.*;
+import dao.ProductDAO;
 
 public class Productservice {
-    private final Map<String, Product> products = new HashMap<>();
+    private final ProductDAO productDAO = new ProductDAO();
 
-    //adding a product
+    //add a product
     public Product add_product(String name, String description, Category category)
     {
         Product product = new Product(name, description, category);
-        products.put(product.get_id(), product);
+        productDAO.create(product);
         return product;
+    }
+
+    //get product by id
+    public Product get_product_by_id(String id)
+    {
+        return productDAO.readById(id);
     }
 
     //see all the products
     public ArrayList<Product> get_products()
     {
-        return new ArrayList<>(products.values());
+        List<Product> products = productDAO.readAll();
+        return new ArrayList<>(products);
+    }
+
+    //update product
+    public void update_product(Product product)
+    {
+        productDAO.update(product);
+    }
+
+    //delete product
+    public void delete_product(String id)
+    {
+        productDAO.delete(id);
     }
 }

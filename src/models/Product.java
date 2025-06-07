@@ -10,7 +10,15 @@ public class Product {
 
     public Product(String name, String description, Category category)
     {
-        this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        this.name = name;
+        this.description = description;
+        this.category = category;
+    }
+
+    public Product(String id, String name, String description, Category category)
+    {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
@@ -54,6 +62,6 @@ public class Product {
     @Override
     public String toString()
     {
-        return "product: " + this.name + "; category: " + this.category;
+        return this.id + " product: " + this.name + "; category: " + this.category;
     }
 }

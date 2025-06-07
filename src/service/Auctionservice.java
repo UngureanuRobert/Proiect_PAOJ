@@ -4,14 +4,18 @@ import models.*;
 import java.util.*;
 import java.time.LocalDateTime;
 import java.time.Duration;
+import dao.BidDAO;
+import dao.AuctionDAO;
 
 public class Auctionservice {
-    private final Map<String, Auction> auctions = new HashMap<>();
+    private final AuctionDAO auctionDAO = new AuctionDAO();
+    private final BidDAO bidDAO = new BidDAO();
 
     //open auction
     public Auction open_auction(Product product, Seller seller, LocalDateTime startTime1, LocalDateTime endTime1, double startPrice1)
     {
-        for (Auction auction: auctions.values())
+        List<Auction> auctions = auctionDAO.readAll();
+        for (Auction auction: auctions)
         {
             if (auction.get_product().get_id().equals(product.get_id()))
             {
@@ -19,22 +23,22 @@ public class Auctionservice {
             }
         }
         Auction auction = new Auction(product, seller, startTime1, endTime1, startPrice1);
-        auctions.put(auction.get_id(), auction);
-        seller.add_auction(auction);
+        auctionDAO.create(auction);
         return auction;
     }
 
     //see all auctions
     public ArrayList<Auction> get_all_auctions()
     {
-        return new ArrayList<>(auctions.values());
+        List<Auction> auctions = auctionDAO.readAll();
+        return new ArrayList<>(auctions);
     }
 
     //see all acustions with a certain status
     public ArrayList<Auction> get_auctions_by_status(AuctionStatus status)
     {
         ArrayList<Auction> auctions_by_status = new ArrayList<>();
-        for (Auction auction: auctions.values())
+        for (Auction auction: auctionDAO.readAll())
         {
             if (auction.get_auction_status() == status)
             {
@@ -47,28 +51,27 @@ public class Auctionservice {
     //place bid for an auction
     public boolean place_bid(String auctionid, Bid bid)
     {
-        Auction auction = auctions.get(auctionid);
+        Auction auction = auctionDAO.readById(auctionid);
         if (auction == null || auction.get_auction_status() != AuctionStatus.OPEN)
         {
             return false;
         }
-        double current_biggest;
-        if (auction.get_biggest_bid() != null)
+        double current_biggest = auction.get_start_price();
+        List<Bid> bids = bidDAO.readAll();
+        for (Bid b:bids)
         {
-            current_biggest = auction.get_biggest_bid().get_amount();
+            if (b.get_auction().get_id().equals(auctionid))
+            {
+                if (b.get_amount() > current_biggest) current_biggest = b.get_amount();
+            }
         }
-        else
-        {
-            current_biggest = auction.get_start_price();
-        }
-
         if (bid.get_amount() <= current_biggest)
         {
             return false;
         }
         else
         {
-            auction.place_bid(bid);
+            bidDAO.create(bid);
             return true;
         }
     }
@@ -77,7 +80,8 @@ public class Auctionservice {
     public void close_expired_auctions()
     {
         LocalDateTime time = LocalDateTime.now();
-        for (Auction auction: auctions.values())
+        List<Auction> auctions = auctionDAO.readAll();
+        for (Auction auction: auctions)
         {
             if (auction.get_auction_status() == AuctionStatus.OPEN && time.isAfter(auction.get_end_time()))
             {
@@ -89,27 +93,28 @@ public class Auctionservice {
     //biggest bid for the auction with the given id
     public Bid get_biggest_bid(String auctionid)
     {
-        Auction auction = auctions.get(auctionid);
-        if (auction == null)
+        Bid biggest_bid = null;
+        double max = 0;
+        for (Bid b:bidDAO.readAll())
         {
-            return null;
+            if (b.get_auction().get_id().equals(auctionid) && b.get_amount() > max)
+            {
+                max = b.get_amount();
+                biggest_bid = b;
+            }
         }
-        return auction.get_biggest_bid();
+        return biggest_bid;
     }
 
     //all bids ever for the auction with the given id
     public ArrayList<Bid> get_bid_history(String auctionid)
     {
-        Auction auction = auctions.get(auctionid);
-        if (auction == null)
+        ArrayList<Bid> bid_history = new ArrayList<>();
+        for (Bid b: bidDAO.readAll())
         {
-            return new ArrayList<>();
+            if (b.get_auction().get_id().equals(auctionid)) bid_history.add(b);
         }
-        else
-        {
-            ArrayList<Bid> bidhistory = new ArrayList<>(auction.get_bid_history().get_all_bids());
-            return bidhistory;
-        }
+        return bid_history;
     }
 
     //returning all auctions of a seller
@@ -117,7 +122,7 @@ public class Auctionservice {
     {
         ArrayList<Auction> all_seller_auctions = new ArrayList<>();
 
-        for (Auction auction: auctions.values())
+        for (Auction auction: auctionDAO.readAll())
         {
             if (auction.get_seller().get_id().equals(sellerid))
             {
@@ -132,11 +137,11 @@ public class Auctionservice {
     public double seller_winning(String sellerid)
     {
         double S = 0;
-        for (Auction auction: auctions.values())
+        for (Auction auction: auctionDAO.readAll())
         {
             if (auction.get_seller().get_id().equals(sellerid) && auction.get_auction_status() == AuctionStatus.CLOSED)
             {
-                Bid biggest_bid1 = auction.get_biggest_bid();
+                Bid biggest_bid1 = get_biggest_bid(auction.get_id());
                 if (biggest_bid1 != null)
                 {
                     S += biggest_bid1.get_amount();
@@ -153,7 +158,7 @@ public class Auctionservice {
         LocalDateTime expiration_date = now.plus(duration);
         ArrayList<Auction> expiring_auctions = new ArrayList<>();
 
-        for (Auction auction: auctions.values())
+        for (Auction auction: auctionDAO.readAll())
         {
             LocalDateTime ending_time = auction.get_end_time();
             if (auction.get_auction_status() == AuctionStatus.OPEN && ending_time.isAfter(now) && ending_time.isBefore(expiration_date))
@@ -168,11 +173,11 @@ public class Auctionservice {
     public ArrayList<Auction> auctions_won(String buyerid)
     {
         ArrayList<Auction> won_auctions = new ArrayList<>();
-        for (Auction auction: auctions.values())
+        for (Auction auction: auctionDAO.readAll())
         {
             if (auction.get_auction_status() == AuctionStatus.CLOSED)
             {
-                Bid biggest_bid = auction.get_biggest_bid();
+                Bid biggest_bid = get_biggest_bid(auction.get_id());
                 if (biggest_bid != null && biggest_bid.get_bidder().get_id().equals(buyerid))
                 {
                     won_auctions.add(auction);
@@ -181,5 +186,35 @@ public class Auctionservice {
         }
         
         return won_auctions;
+    }
+
+    //get bid by id
+    public Bid get_bid_by_id(String bidid)
+    {
+        return bidDAO.readById(bidid);
+    }
+
+    //update bid
+    public void update_bid(Bid bid)
+    {
+        bidDAO.update(bid);
+    }
+
+    //delete bid
+    public void delete_bid(String bidid)
+    {
+        bidDAO.delete(bidid);
+    }
+
+    //update auction
+    public void update_auction(Auction auction)
+    {
+        auctionDAO.update(auction);
+    }
+
+    //delete auction
+    public void delete_auction(String auctionid)
+    {
+        auctionDAO.delete(auctionid);
     }
 }

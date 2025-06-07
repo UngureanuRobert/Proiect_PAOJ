@@ -11,6 +11,14 @@ public class Buyer extends User{
         this.bidhistory = new BidHistory();
     }
 
+    //constructor for SELECTING from DB (needed in DAO)
+    public Buyer(String id, String name, String email)
+    {
+        super(id, name, email);
+        this.watchlist = new Watchlist(this);
+        this.bidhistory = new BidHistory();
+    }
+
     public Watchlist get_watchlist()
     {
         return this.watchlist;

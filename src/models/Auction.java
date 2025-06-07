@@ -25,6 +25,20 @@ public class Auction {
         this.status = AuctionStatus.OPEN;
         this.startPrice = startPrice;
     }
+
+    //Constructor for AuctionDAO
+    public Auction(String id, String product_id, String seller_id, LocalDateTime startTime, LocalDateTime endTime, AuctionStatus status, double startPrice)
+    {
+        this.id = id;
+        this.product = new Product(product_id, "", "", Category.OTHER); //dummy
+        this.seller = new Seller(seller_id, "", ""); //dummy
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.status = status;
+        this.startPrice = startPrice;
+        this.bidHistory = new BidHistory();
+    }
+
     //getteriiiiii
     public String get_id()
     {

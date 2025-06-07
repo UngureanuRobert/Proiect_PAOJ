@@ -11,6 +11,13 @@ public class Seller extends User {
         this.auctions = new ArrayList<>();
     }
 
+    //constructor for SELECTING from DB (needed in DAO)
+    public Seller(String id, String name, String email)
+    {
+        super(id, name, email);
+        this.auctions = new ArrayList<>();
+    }
+
     public ArrayList<Auction> get_auctions()
     {
         return this.auctions;
